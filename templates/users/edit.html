@@ -1,0 +1,18 @@
+{% extends "./base.html" %} {% load static %} {% block title %}Ajouter un
+Utilisateur{% endblock title %} {% block content %}
+<!-- Main Content -->
+<div class="flex items-center justify-center flex-1 p-6">
+  <div class="w-full max-w-md p-8 bg-white rounded-lg shadow-lg">
+    <h1 class="mb-6 text-2xl font-semibold text-center">
+      Modifier un utilisateur
+    </h1>
+    <form action="" method="POST" class="grid grid-cols-1 gap-6">
+      {% csrf_token %} {{form.as_p}}
+      <button type="submit" class="btn btn-primary btn-sm" value="">
+        Update
+      </button>
+    </form>
+    <form action="#" method="POST" class="grid grid-cols-1 gap-6"></form>
+  </div>
+</div>
+{% endblock content %}

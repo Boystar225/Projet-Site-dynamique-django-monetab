@@ -1,0 +1,213 @@
+{% extends "./base.html" %} {% load crispy_forms_tags %} {% load static %}
+{%load tailwind_filters %} {% load crispy_forms_tags %} {%block title %} Editer
+L'eleve{%endblock title %} {% block script %}<link
+  href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+  rel="stylesheet"
+/>{% endblock script %} {% block content %}<!-- Main Content -->
+<div class="flex-1 p-6">
+  <a
+    href="{% url 'student:index' %}"
+    class="flex items-center mb-6 text-gray-500 hover:text-gray-700"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="w-5 h-5 mr-2"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M15 19l-7-7 7-7"
+      />
+    </svg>
+    Retour
+  </a>
+  <div class="max-w-4xl p-8 mx-auto bg-white rounded-lg shadow-lg">
+    <h1 class="mb-6 text-2xl font-semibold text-center">Modifier un élève</h1>
+    <form action="#" method="POST" class="grid grid-cols-2 gap-6">
+      {% csrf_token %} {{ students | crispy }}
+      <!-- Bouton Soumettre -->
+      <div class="col-span-2">
+        <button
+          type="submit"
+          class="w-full p-3 text-white bg-indigo-600 rounded-md shadow hover:bg-indigo-500"
+        >
+          Enregistrer les modifications
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock content %}<!-- Main Content -->
+<div class="flex-1 p-6">
+  <a
+    href="{% url 'student:index' %}"
+    class="flex items-center mb-6 text-gray-500 hover:text-gray-700"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="w-5 h-5 mr-2"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M15 19l-7-7 7-7"
+      />
+    </svg>
+    Retour
+  </a>
+  <div class="max-w-4xl p-8 mx-auto bg-white rounded-lg shadow-lg">
+    <h1 class="mb-6 text-2xl font-semibold text-center">Modifier un élève</h1>
+    <form action="#" method="POST" class="grid grid-cols-2 gap-6">
+      <!-- Champ Nom -->
+      <div>
+        <span class="w-full border-2"> {{ form.username }} </span>
+
+        {{ form.password }} {{ form.remember_me }} {{ form.remember_me }}
+        <label for="nom" class="block text-sm font-medium text-gray-700"
+          >Nom</label
+        >
+        <input
+          type="text"
+          id="nom"
+          name="nom"
+          placeholder="Nom Précédent"
+          class="block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+        />
+      </div>
+      <!-- Champ Prénom -->
+      <div>
+        <label for="prenom" class="block text-sm font-medium text-gray-700"
+          >Prénom</label
+        >
+        <input
+          type="text"
+          id="prenom"
+          name="prenom"
+          placeholder="Prénom Précédent"
+          class="block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+        />
+      </div>
+      <!-- Champ Genre -->
+      <div class="col-span-2">
+        <label class="block text-sm font-medium text-gray-700">Genre</label>
+        <div class="flex items-center mt-1">
+          <input
+            type="radio"
+            id="homme"
+            name="genre"
+            value="homme"
+            class="w-4 h-4 text-indigo-600 border-gray-300 focus:ring-indigo-500"
+            checked
+          />
+          <label
+            for="homme"
+            class="block ml-3 text-sm font-medium text-gray-700"
+            >Homme</label
+          >
+          <input
+            type="radio"
+            id="femme"
+            name="genre"
+            placeholder="femme"
+            class="w-4 h-4 ml-6 text-indigo-600 border-gray-300 focus:ring-indigo-500"
+          />
+          <label
+            for="femme"
+            class="block ml-3 text-sm font-medium text-gray-700"
+            >Femme</label
+          >
+        </div>
+      </div>
+      <!-- Champ Matricule -->
+      <div>
+        <label for="matricule" class="block text-sm font-medium text-gray-700"
+          >Matricule</label
+        >
+        <input
+          type="text"
+          id="matricule"
+          name="matricule"
+          placeholder="Matricule Précédent"
+          class="block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+        />
+      </div>
+      <!-- Champ Date de Naissance -->
+      <div>
+        <label
+          for="date_naissance"
+          class="block text-sm font-medium text-gray-700"
+          >Date de naissance</label
+        >
+        <input
+          type="date"
+          id="date_naissance"
+          name="date_naissance"
+          placeholder="2000-01-01"
+          class="block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+        />
+      </div>
+      <!-- Champ Classe -->
+      <div>
+        <label for="classe" class="block text-sm font-medium text-gray-700"
+          >Classe</label
+        >
+        <select
+          id="classe"
+          name="classe"
+          class="block w-full p-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+        >
+          <option value="Tle" selected>Tle</option>
+          <option value="1ère">1ère</option>
+          <option value="2nd">2nd</option>
+          <option value="3ème">3ème</option>
+          <option value="4ème">4ème</option>
+          <option value="5ème">5ème</option>
+          <option value="6ème">6ème</option>
+        </select>
+      </div>
+      <!-- Champ Téléphone -->
+      <div>
+        <label for="telephone" class="block text-sm font-medium text-gray-700"
+          >Téléphone</label
+        >
+        <input
+          type="text"
+          id="telephone"
+          name="telephone"
+          placeholder="telephone"
+          class="block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+        />
+      </div>
+      <!-- Champ Ville -->
+      <div>
+        <label for="ville" class="block text-sm font-medium text-gray-700"
+          >Ville</label
+        >
+        <input
+          type="text"
+          id="ville"
+          name="ville"
+          placeholder="Ville"
+          class="block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+        />
+      </div>
+      <!-- Bouton Soumettre -->
+      <div class="col-span-2">
+        <button
+          type="submit"
+          class="w-full p-3 text-white bg-indigo-600 rounded-md shadow hover:bg-indigo-500"
+        >
+          Enregistrer les modifications
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
