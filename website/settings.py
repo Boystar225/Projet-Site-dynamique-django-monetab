@@ -142,3 +142,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
 
 CRISPY_TEMPLATE_PACK = "tailwind"
+
+
+
+# Redirige l'utilisateur vers cette URL après connexion
+LOGIN_REDIRECT_URL = 'dashboard:index'  # Modifier selon le nom de ton URL d'accueil
+
+# Redirige l'utilisateur vers cette URL après déconnexion
+LOGOUT_REDIRECT_URL = 'dashboard:login' 
+
+
+# URL pour le formulaire de connexion
+LOGIN_URL = 'dashboard:login'

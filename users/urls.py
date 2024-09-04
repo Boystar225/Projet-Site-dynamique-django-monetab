@@ -12,3 +12,4 @@ urlpatterns = [
     path('edit/<str:pk>/', edit, name='edit'),
     
 ]
+

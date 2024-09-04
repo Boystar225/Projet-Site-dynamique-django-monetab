@@ -1,13 +1,22 @@
-function openModal() {
-   document.getElementById('deleteModal').classList.remove('hidden');
-}
+document.addEventListener('DOMContentLoaded', function () {
+   // Fonction pour ouvrir le modal et définir l'ID de l'élève
+   window.openModal = function (studentId) {
+      const modal = document.getElementById('deleteModal');
+      const confirmDeleteLink = document.getElementById('confirmDelete');
 
-function closeModal() {
-   document.getElementById('deleteModal').classList.add('hidden');
-}
+      // Mettre à jour le lien de suppression avec l'ID de l'élève
+      confirmDeleteLink.href = `/student/delete/${studentId}/`;
 
-function deleteItem() {
-   // Logique de suppression ici
-   alert('Élément supprimé');
-   closeModal();
-}
+      if (modal) {
+         modal.classList.remove('hidden');
+      }
+   };
+
+   // Fonction pour fermer le modal
+   window.closeModal = function () {
+      const modal = document.getElementById('deleteModal');
+      if (modal) {
+         modal.classList.add('hidden');
+      }
+   };
+});

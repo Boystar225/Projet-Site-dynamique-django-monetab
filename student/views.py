@@ -1,15 +1,17 @@
 from django.shortcuts import render,redirect
 from .models import Students
 from .forms import StudentsForm
-
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404
 
 # Create your views here.
-
+@login_required
 def index(request):
     students = Students.objects.all()
     total = Students.objects.count()
     return render(request, "student/index.html",{'students':students, 'total':total})
 
+@login_required
 def edit(request, pk):
     if request.method == "POST":
         student = Students.objects.get(id=pk)
@@ -25,6 +27,7 @@ def edit(request, pk):
         context = {'students':students}
         return render(request, "student/edit.html",context)
 
+@login_required
 def add(request):
     if request.method == 'POST':
         form = StudentsForm(request.POST)
@@ -40,11 +43,12 @@ def add(request):
         forms = StudentsForm()
         context= {'form':forms}
         return render(request, "student/add.html",context)
-    
+
+@login_required
 def delete(request, pk):
-    teacher = Students.objects.get(id=pk)
-    teacher.delete()    
-    
-    return redirect(request,'student:index')
+    student = get_object_or_404(Students, id=pk)
+    student.delete()    
+    return redirect('student:index')
+
     
 

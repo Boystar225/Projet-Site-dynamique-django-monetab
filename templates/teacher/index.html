@@ -1,7 +1,8 @@
-{% extends "./base.html" %} {% load static %} {% block title %} Mon Etab -
+{% extends "base.html" %} {% load static %} {% block title %} Mon Etab -
 Professeur {% endblock title %} {% block script %}
 <script src="{% static 'teacher/js/teacher.js' %}" defer></script>
 {% endblock script %} {% block content %}
+
 <div class="flex-1 p-6">
    <div class="flex items-center justify-between mb-6">
       <h1 class="text-2xl font-semibold">Professeurs ({{ total }})</h1>

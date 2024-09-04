@@ -1,7 +1,7 @@
-{% extends "./base.html" %} {% load static %} {% block title %} Listes des
-eleves{% endblock %} {% block script %}
-<script src="{% static 'js/student.js' %}" defer></script>
-{% endblock %} {% block content %}
+{% extends "base.html" %} {% load static %} {% block title %} Listes des
+eleves{% endblock title %} {% block script %}
+<script src="{% static 'student/js/student.js' %}" defer></script>
+{% endblock script %} {% block content %}
 
 <div class="flex-1 p-6">
    <div class="flex items-center justify-between mb-6">
@@ -41,13 +41,6 @@ eleves{% endblock %} {% block script %}
                >
                   Prénom
                </th>
-               {% comment %}
-               <th
-                  class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
-               >
-                  Genre
-               </th>
-               {% endcomment %}
                <th
                   class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
                >
@@ -112,62 +105,53 @@ eleves{% endblock %} {% block script %}
                   </a>
                   <button
                      class="px-4 py-1 ml-2 font-bold text-white bg-red-500 rounded hover:bg-red-600"
-                     onclick="openModal()"
+                     onclick="openModal({{ student.id }})"
                   >
                      Supprimer
                   </button>
                </td>
             </tr>
-
-            <!-- Modal -->
-            <div
-               id="deleteModal"
-               class="fixed inset-0 hidden w-full h-full overflow-y-auto bg-gray-600 bg-opacity-50"
-            >
-               <div
-                  class="relative p-5 mx-auto bg-white border rounded-md shadow-lg top-1/4 w-96"
-               >
-                  <div class="mt-3 text-center">
-                     <h3 class="text-lg font-medium leading-6 text-gray-900">
-                        Confirmer la suppression
-                     </h3>
-                     <div class="py-3 mt-2 px-7">
-                        <p class="text-sm text-gray-500">
-                           Êtes-vous sûr de vouloir supprimer cet élément ?
-                           Cette action est irréversible.
-                        </p>
-                     </div>
-                     <div class="items-center px-4 py-3">
-                        <a
-                           href="{% url 'student:delete' student.id %}"
-                           class="px-4 py-2 font-bold text-white bg-red-500 rounded hover:bg-red-600"
-                           onclick="deleteItem()"
-                        >
-                           Supprimer
-                        </a>
-                        {% comment %}
-                        <button
-                           id="confirmDelete"
-                           class="px-4 py-2 font-bold text-white bg-red-500 rounded hover:bg-red-600"
-                        ></button>
-                        {% endcomment %}
-                        <button
-                           id="cancelDelete"
-                           class="px-4 py-2 ml-2 font-bold text-gray-800 bg-gray-300 rounded hover:bg-gray-400"
-                           onclick="closeModal()"
-                        >
-                           Annuler
-                        </button>
-                     </div>
-                  </div>
-               </div>
-            </div>
-            {% endfor %} {% comment %}
-            <h1>Aucun enregistrement</h1>
-            {% endcomment %}
+            {% endfor %}
          </tbody>
       </table>
    </div>
 </div>
 
-{% endblock %}
+<!-- Modal de suppression en dehors de la boucle -->
+<div
+   id="deleteModal"
+   class="fixed inset-0 hidden w-full h-full overflow-y-auto bg-gray-600 bg-opacity-50"
+>
+   <div
+      class="relative p-5 mx-auto bg-white border rounded-md shadow-lg top-1/4 w-96"
+   >
+      <div class="mt-3 text-center">
+         <h3 class="text-lg font-medium leading-6 text-gray-900">
+            Confirmer la suppression
+         </h3>
+         <div class="py-3 mt-2 px-7">
+            <p class="text-sm text-gray-500">
+               Êtes-vous sûr de vouloir supprimer cet élément ? Cette action est
+               irréversible.
+            </p>
+         </div>
+         <div class="items-center px-4 py-3">
+            <a
+               href="#"
+               class="px-4 py-2 font-bold text-white bg-red-500 rounded hover:bg-red-600"
+               id="confirmDelete"
+            >
+               Supprimer
+            </a>
+            <button
+               id="cancelDelete"
+               class="px-4 py-2 ml-2 font-bold text-gray-800 bg-gray-300 rounded hover:bg-gray-400"
+               onclick="closeModal()"
+            >
+               Annuler
+            </button>
+         </div>
+      </div>
+   </div>
+</div>
+{% endblock content%}
