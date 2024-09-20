@@ -14,13 +14,19 @@
    <body class="font-sans antialiased bg-gray-100">
       <div class="flex min-h-screen">
          <!-- Sidebar -->
+         {% block header %}
          <aside
             class="flex flex-col justify-between w-64 text-white bg-gray-800"
          >
             <div class="p-6">
                <div class="flex items-center justify-center mb-8">
-                  <img src="{% static "student/images/logo.png" %}" alt="logo du
-                  site" width="50px" height="50px" class="mr-3" />
+                  <img
+                     src="{% static 'images/logo.png' %}"
+                     alt="logo du site"
+                     width="50px"
+                     height="50px"
+                     class="mr-3"
+                  />
                   <h2 class="text-3xl font-semibold">Mon Etab</h2>
                </div>
 
@@ -31,13 +37,13 @@
                            href="{% url 'dashboard:index' %}"
                            class="flex items-center hover:text-gray-400"
                         >
-                           <span class="mr-2">🏠</span> Tableau de bord
+                           <span class="mr-2">📈</span> Tableau de bord
                         </a>
                      </li>
                      <li class="mb-4">
                         <a
                            href="{% url 'student:index' %}"
-                           class="flex items-center font-medium  hover:text-gray-400"
+                           class="flex items-center font-medium hover:text-gray-400"
                         >
                            <span class="mr-2">👥</span> Élèves
                         </a>
@@ -52,7 +58,7 @@
                      </li>
                      <li class="mb-4">
                         <a
-                           href="{% url 'users:index' %}"
+                           href="{% url 'user:index' %}"
                            class="flex items-center hover:text-gray-400"
                         >
                            <span class="mr-2">👤</span> Utilisateurs
@@ -64,6 +70,62 @@
                            class="flex items-center hover:text-gray-400"
                         >
                            <span class="mr-2">📊</span> Rapport
+                        </a>
+                     </li>
+                     <li class="mb-4">
+                        <a
+                           href="{% url 'adress:add_adresse' %}"
+                           class="flex items-center hover:text-gray-400"
+                        >
+                           <span class="mr-2">🏠</span> Adresse
+                        </a>
+                     </li>
+                     {% comment %} <li class="mb-4">
+                        <a
+                           href="{% url 'school:index_school' %}"
+                           class="flex items-center hover:text-gray-400"
+                        >
+                           <span class="mr-2">🏫</span> School
+                        </a>
+                     </li>
+                     <li class="mb-4"> {% endcomment %}
+                        <a
+                           href="{% url 'user:index_role' %}"
+                           class="flex items-center hover:text-gray-400"
+                        >
+                           <span class="mr-2">🛠️</span> Role Utilisateur
+                        </a>
+                     </li>
+                     {% comment %} <li class="mb-4">
+                        <a
+                           href="{% url 'school:list_setting' %}"
+                           class="flex items-center hover:text-gray-400"
+                        >
+                           <span class="mr-2"></span> App setting
+                        </a>
+                     </li> {% endcomment %}
+                     <li class="mb-4">
+                        <a
+                           href="{% url 'student:list_card' %}"
+                           class="flex items-center hover:text-gray-400"
+                        >
+                           <span class="mr-2">💳</span> Carte d'étudiant
+                        </a>
+                     </li>
+                     <li class="mb-4">
+                        <a
+                           href="{% url 'student:add_abs' %}"
+                           class="flex items-center hover:text-gray-400"
+                        >
+                           <span class="mr-2">❌</span> Absence
+                        </a>
+                     </li>
+                     <li class="mb-4">
+                        <a
+                           href="{% url 'school:configurations' %}"
+                           class="flex items-center hover:text-gray-400"
+                        >
+                           <span class="mr-2">⚙️</span> configurations
                         </a>
                      </li>
                   </ul>
@@ -78,8 +140,7 @@
                </a>
             </div>
          </aside>
-
-         {% block content%} {% endblock %}
+         {% endblock header %} {% block content %} {% endblock %}
       </div>
    </body>
 </html>

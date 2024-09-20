@@ -1,0 +1,3 @@
+from student.models.student_model import StudentModel
+from student.models.absence_model import AbsenceModel
+from student.models.studentCards_model import StudentCardsModel

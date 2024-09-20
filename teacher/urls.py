@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import index
+from teacher.views import index
 from .views import add
 from .views import edit,delete
 

@@ -16,17 +16,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from student.views import index
-from dashboard.views import index
-from teacher.views import index
-from users.views import index
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('student/', include('student.urls')),
-    path('', include('dashboard.urls')),
+    path('dashboard/', include('dashboard.urls')),
     path('teacher/', include('teacher.urls')),
-    path('users/', include('users.urls')),
+    path('user/', include('user.urls')),
     path('rapport/', include('rapport.urls')),
+    path('base/', include('base.urls')),
+    path('', include('school.urls')),
+    path('api/', include('api.urls')), # Ajout de l'URL de l'API
 ]

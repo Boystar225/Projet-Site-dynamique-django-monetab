@@ -1,6 +1,6 @@
 from django import forms
-
-from .models import Teacher
+from base.models.helpers.person_model import PersonModel
+from teacher.models.teacher_model import TeacherModel
 
 # # Create your forms here.
 # class Teacher(forms.Form):
@@ -16,11 +16,9 @@ from .models import Teacher
 
 class TeacherForm(forms.ModelForm):
     class Meta:
-        model = Teacher
-        fields = ["name","last_name","birth_date","disponibility","courses","number","country","lesson","next_meet"]
+        model = TeacherModel
+        fields = "__all__"
         widgets = {
-            'birth_date': forms.DateInput(attrs={'type': 'date'}),
-            'disponibility': forms.CheckboxInput(),
-            'number':forms.NumberInput(attrs={'type': 'number'}),
-            
+            'birthday': forms.DateInput(attrs={'type': 'date'}),
+            'gender' :forms.RadioSelect(choices=PersonModel.GENDER_CHOICES), 
         }

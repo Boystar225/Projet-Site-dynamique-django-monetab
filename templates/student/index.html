@@ -5,7 +5,7 @@ eleves{% endblock title %} {% block script %}
 
 <div class="flex-1 p-6">
    <div class="flex items-center justify-between mb-6">
-      <h1 class="text-2xl font-semibold">Élèves ({{ total }})</h1>
+      <h1 class="text-2xl font-semibold">Élèves ({{ student_count }})</h1>
       <a
          href="{% url 'student:add' %}"
          class="flex items-center text-blue-500 hover:text-blue-700"
@@ -27,6 +27,22 @@ eleves{% endblock title %} {% block script %}
          Nouvel élève
       </a>
    </div>
+   <!-- Barre de recherche -->
+        <form method="GET" action="" class="mb-4 flex items-center">
+           <input
+              type="text"
+              name="search"
+              placeholder="Rechercher un utilisateur..."
+              value="{{ search_field }}"
+              class="w/2 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+           />
+           <button
+              type="submit"
+              class="ml-2 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+           >
+              Rechercher
+           </button>
+        </form>
    <div class="p-6 overflow-auto bg-white rounded-lg shadow">
       <table class="min-w-full divide-y divide-gray-200">
          <thead class="bg-gray-50">
@@ -98,7 +114,7 @@ eleves{% endblock title %} {% block script %}
 
                <td class="px-6 py-4 whitespace-nowrap">
                   <a
-                     href="{% url 'student:edit' student.id %}"
+                     href="{% url 'student:update-student' student.id %}"
                      class="px-4 py-1 font-bold text-white bg-yellow-500 rounded hover:bg-yellow-600"
                   >
                      Modifier

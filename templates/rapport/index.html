@@ -1,68 +1,45 @@
-{% extends "base.html" %} {% load static %} {% block title %} Mon Etab - Rapport
-{% endblock title %} {% block content %}
+{% extends "base.html" %}
+{% load static %}
+{% block title %} Mon Etab - Rapport {% endblock title %}
 
-<!-- Main Content -->
+{% block content %}
 <div class="flex-1 p-6">
-   <a
-      href="{% url 'rapport:index' %}"
-      class="flex items-center mb-6 text-gray-500 hover:text-gray-700"
-   >
-      <svg
-         xmlns="http://www.w3.org/2000/svg"
-         class="w-5 h-5 mr-2"
-         fill="none"
-         viewBox="0 0 24 24"
-         stroke="currentColor"
-      >
-         <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M15 19l-7-7 7-7"
-         />
+   <a href="{% url 'rapport:index' %}" class="flex items-center mb-6 text-gray-500 hover:text-gray-700">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
       </svg>
       Retour
    </a>
    <div class="max-w-full p-8 mx-auto bg-white rounded-lg shadow-lg">
       <h1 class="mb-6 text-2xl font-semibold text-center">Rapport</h1>
-      <form action="#" method="POST" class="grid grid-cols-2 gap-6">
-         <!-- Champ Option -->
+      <form id="rapport-form" method="POST" class="grid grid-cols-2 gap-6">
+         {% csrf_token %}
          <div class="flex items-center space-x-4">
-            <!-- Label -->
             <label for="option" class="block text-sm font-medium text-gray-700">
                Sélectionnez une option
             </label>
-
-            <!-- Sélecteur -->
-            <select
-               id="matiere"
-               name="matiere"
-               class="p-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-            >
-               <option value="Tle" selected>Liste des élèves</option>
-               <option value="1ère">Liste des Professeurs</option>
-               <option value="2nd">Liste des utilisateurs</option>
-            </select>
-
-            <!-- Boutons -->
-
-            <button
-               width="100px"
-               type="submit"
-               class="px-4 py-2 font-bold text-white transition duration-150 bg-red-500 rounded hover:bg-red-600"
-            >
-               Générer un format PDF
-            </button>
-            <button
-               width="100px"
-               type="submit"
-               class="px-4 py-2 font-bold text-white transition duration-150 bg-green-500 rounded hover:bg-green-600"
-            >
-               Générer un format Excel
-            </button>
+           
          </div>
       </form>
+      <form method="POST" action="{% url 'rapport:download' %}">
+         {% csrf_token %}
+         <div class="input-box-2">
+             <select name="report_type" required class="p-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                 <option value="">Choisir...</option>
+                 <option value="students">Liste des élèves</option>
+                 <option value="teachers">Liste des professeurs</option>
+                 <option value="users">Liste des utilisateurs</option>
+             </select>
+         </div>
+
+         <div class="btn">
+             <button type="submit" name="format" value="pdf"  class="px-4 py-2 font-bold text-white bg-red-500 rounded hover:bg-red-600">Générer format PDF</button>
+             <button type="submit" name="format" value="excel"  class="px-4 py-2 font-bold text-white bg-green-500 rounded hover:bg-green-600">Générer format Excel</button>
+         </div>
+     </form>
+
    </div>
 </div>
 
-{%endblock content %}
+
+{% endblock content %}

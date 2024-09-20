@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %} Paramètres {% endblock title %}
+{% block content %}
+ 
+<div class="container mx-auto py-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- School Setting Card -->
+        <a href="{% url 'school:index_school' %}" class="block p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 max-w-xs mx-auto">
+            <div class="flex items-center">
+                <div class="text-blue-500 mr-4">
+                    <!-- School Icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M10 2L2 7l8 5 8-5-8-5zm0 11L2 8v6l8 5 8-5V8l-8 5z" />
+                    </svg>
+                </div>
+                <div>
+                    <h2 class="text-lg font-semibold">School Setting</h2>
+                    <p class="text-gray-500">Gérer les paramètres de l'école</p>
+                </div>
+            </div>
+        </a>
+
+        <!-- Application Setting Card -->
+        <a href="{% url 'school:list_setting' %}" class="block p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 max-w-xs mx-200%">
+            <div class="flex items-center">
+                <div class="text-green-500 mr-4">
+                    <!-- Application Icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M6 3a1 1 0 00-1 1v2H4a1 1 0 000 2h1v2H4a1 1 0 000 2h1v2H4a1 1 0 000 2h1v2a1 1 0 001 1h2v1a1 1 0 002 0v-1h2v1a1 1 0 002 0v-1h2a1 1 0 001-1v-2h1a1 1 0 000-2h-1v-2h1a1 1 0 000-2h-1V8h1a1 1 0 000-2h-1V4a1 1 0 00-1-1h-2V2a1 1 0 00-2 0v1H8V2a1 1 0 00-2 0v1H6zm2 4v8h4V8H8z" clip-rule="evenodd" />
+                    </svg>
+                </div>
+                <div>
+                    <h2 class="text-lg font-semibold">Application Setting</h2>
+                    <p class="text-gray-500">Configurer les paramètres de l'application</p>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+
+{% endblock content %}

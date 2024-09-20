@@ -37,14 +37,28 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'student',
-    'dashboard',
-    'teacher',
-    'users',
-    'rapport',
+    
+    #Isntall package
+    
+    'rest_framework', # package pour créer une API REST
+    'drf_yasg',
+    
+    #Apps ajoutées 
+    
+    'student.apps.StudentConfig',
+    'dashboard.apps.DashboardConfig',
+    'teacher.apps.TeacherConfig',
+    'user.apps.UserConfig',
+    'rapport.apps.RapportConfig',
     "crispy_forms",
     "crispy_tailwind",
+    'base.apps.BaseConfig',
+    'school.apps.SchoolConfig',
+    'api.apps.ApiConfig',
+       
 ]
+
+AUTH_USER_MODEL = 'user.CustomUserModel'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -82,12 +96,12 @@ WSGI_APPLICATION = 'website.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'etab_db',
-        'USER': 'root',
-        'PASSWORD':'',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'etab_DB',
+        'USER': 'postgres',
+        'PASSWORD':'admin',
         'HOST': 'localhost',
-        'PORT': '3306'
+        'PORT': '5432'
     }
 }
 
